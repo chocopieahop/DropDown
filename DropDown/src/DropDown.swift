@@ -531,6 +531,8 @@ private extension DropDown {
 
 		tableView.delegate = self
 		tableView.dataSource = self
+        
+        tableView.separatorInset.left = 0
 		
 		startListeningToKeyboard()
 
