@@ -869,6 +869,9 @@ extension DropDown {
 
 		isHidden = false
         
+        tableView.layer.borderColor = UIColor.lightGray.cgColor
+        tableView.layer.borderWidth = 1
+        
         if anchorPoint != nil {
             tableViewContainer.layer.anchorPoint = anchorPoint!
         }
@@ -895,6 +898,21 @@ extension DropDown {
 
 		//deselectRows(at: selectedRowIndices)
 		selectRows(at: selectedRowIndices)
+        
+        // MARK: - 드롭다운 테이블 뷰에 상단을 제외한 나머지 부분에 line border추가
+        if #available(iOS 11.0, *) {
+            tableViewContainer.configureBottomCornerRadius()
+        }
+        
+        let downLayer = CAShapeLayer()
+        downLayer.lineWidth = 1
+        if #available(iOS 13.0, *) {
+            downLayer.strokeColor = UIColor.systemGray3.cgColor
+        }
+        downLayer.fillColor = nil
+        downLayer.path = CGMutablePath.toplessRoundedRect(in: tableView.bounds, radius: 5)
+        tableView.layer.insertSublayer(downLayer, at: 0)
+        // -
 
 		return (layout.canBeDisplayed, layout.offscreenHeight)
 	}
