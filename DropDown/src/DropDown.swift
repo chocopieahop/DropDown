@@ -869,9 +869,6 @@ extension DropDown {
 
 		isHidden = false
         
-        tableView.layer.borderColor = UIColor.lightGray.cgColor
-        tableView.layer.borderWidth = 1
-        
         if anchorPoint != nil {
             tableViewContainer.layer.anchorPoint = anchorPoint!
         }
